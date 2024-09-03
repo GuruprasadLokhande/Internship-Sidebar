@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
+import Setting from "./menus/Setting";
+import ManageUsers from "./menus/ManageUsers";
+import ShortVideoLibrary from "./menus/ShortVideoLibrary";
+import Home from "./menus/Hhome";
+import Sidenavbar from "./components/Sidenavbar"; 
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    
+      <Router>
+      <div style={{ display: "flex" }}>
+        <Sidenavbar />
+        <div
+          style={{
+            backgroundColor: "#191d38", 
+            minHeight: "100vh", 
+            padding: "20px",
+            width: "calc(100%)",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <div
+            style={{
+              marginLeft: "300px", 
+              padding: "20px",
+              backgroundColor: "#191d38", 
+              minHeight: "100vh", 
+              overflow: "auto", 
+            }}
+          >
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/videos" element={<ShortVideoLibrary />} />
+              <Route path="/manage-users" element={<ManageUsers />} />
+              <Route path="/settings" element={<Setting />} />
+              <Route path="/" element={<Home />} /> Default route
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </Router>
+    
+    
+    
+
+     
   );
-}
+};
 
 export default App;
